@@ -38,16 +38,26 @@ router.get('/get-notes', middleware, async (req, res) => {
 
 
 router.put('/update-note/:id', middleware, async (req, res) => {
-
   try {
-    await Note.findByIdAndUpdate(req.params.id, {
-      title: req.body.title,
-      description: req.body.description
-    });
+    const { title, description } = req.body;
 
+    if (!title || !description) {
+      return res.status(400).json({ success: false, message: "Both title and description are required" });
+    }
 
-    return res.status(200).json({ success: true, message: 'Note updated successfully' });
+    const updated = await Note.findByIdAndUpdate(
+      req.params.id,
+      { title, description },
+      { new: true, runValidators: true }
+    );
+
+    if (!updated) {
+      return res.status(404).json({ success: false, message: "Note not found" });
+    }
+
+    return res.status(200).json({ success: true, message: 'Note updated successfully', data: updated });
   } catch (error) {
+    console.error("Update error:", error);
     return res.status(500).json({ success: false, message: error.message });
   }
 });

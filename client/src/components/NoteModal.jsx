@@ -4,7 +4,6 @@ import { memo, useEffect, useState } from 'react';
 const NoteModal = ({closeModal, addNote, editNote, currentNote}) => {
     const [title, setTitle] = useState(currentNote?.title || '');
     const [description, setDescription] = useState(currentNote?.description || '');
-    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         if (currentNote) {
@@ -16,9 +15,9 @@ const NoteModal = ({closeModal, addNote, editNote, currentNote}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (currentNote) {
-            editNote(currentNote._id, { title, description }, setLoading);
+            editNote(currentNote._id, { title, description });
         } else {
-            addNote(title, description, setLoading);
+            addNote(title, description);
         }
     };
 
@@ -34,16 +33,16 @@ const NoteModal = ({closeModal, addNote, editNote, currentNote}) => {
           value={title}
           required
           onChange={(e) => setTitle(e.target.value)}
-          className="border border p-2 mb-4 w-full"
+          className=" border p-2 mb-4 w-full"
         />
       <textarea
         placeholder="Description"
         value={description}
         required
         onChange={(e) => setDescription(e.target.value)}
-        className="border border p-2 mb-4 w-full"
+        className=" border p-2 mb-4 w-full"
       />
-      <button type='submit' disabled={loading} className="bg-blue-500 text-white px-4 py-2 rounded">{loading ? "Processing..." : currentNote ? "Update Note" : "Add Note"}</button>
+      <button type='submit' className="bg-blue-500 text-white px-4 py-2 rounded">{currentNote ? "Update Note" : "Add Note"}</button>
       </form>
       <button onClick={closeModal} className='mt-4 text-red-500'>Cancel</button>
       </div>

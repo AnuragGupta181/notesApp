@@ -55,11 +55,11 @@ const Dashboard = () => {
     );
   };
 
-  const editNote = async (id, title, description) => {
+  const editNote = async (id, data) => {
     return toast.promise(
       axios.put(
         `${import.meta.env.VITE_URL}api/notes/update-note/${id}`,
-        { title, description },
+        data,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -135,7 +135,6 @@ const Dashboard = () => {
         )}
       </div>
 
-      {/* Floating Add Button */}
       <button
         onClick={() => setIsModalOpen(true)}
         className="fixed right-4 bottom-4 font-bold text-2xl bg-blue-500 text-white px-4 py-2 rounded-full shadow-lg hover:bg-blue-600"
@@ -149,7 +148,6 @@ const Dashboard = () => {
           closeModal={closeModal}
           addNote={addNote}
           editNote={editNote}
-          deleteNote={deleteNote}
           currentNote={currentNote}
         />
       )}

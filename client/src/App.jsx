@@ -21,7 +21,8 @@ function App() {
           <RequireAuth>
             <Dashboard />
           </RequireAuth>
-        } />       
+        } />   
+        <Route path="*" element={<div>404 Not Found</div>} />
       </Routes>
     </BrowserRouter>
   )
