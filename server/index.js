@@ -3,7 +3,7 @@ import express from 'express'
 import cors from 'cors'
 import connectDB from './db/db.js'
 import authRouter from './routes/auth.js'
-import Router from './routes/add-note.js'
+import Router from './routes/notes.js'
 import 'dotenv/config';
 
 const app = express()
