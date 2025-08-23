@@ -73,7 +73,7 @@ npm run dev
 
 ---
 
-## 🏁 Run Project
+## Run Project
 
 Once both backend and frontend are running:
 
