@@ -21,7 +21,7 @@ function App() {
           <RequireAuth>
             <Dashboard />
           </RequireAuth>
-        } />
+        } />       
       </Routes>
     </BrowserRouter>
   )
