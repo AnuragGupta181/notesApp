@@ -28,11 +28,7 @@ const Navbar = () => {
             <Link to="/">Notes App</Link>
           </div>
           <div className="hidden md:flex space-x-4">
-            <input
-              type="text"
-              placeholder="Search..."
-              className="bg-gray-700 text-white px-2 py-1 rounded"
-            />
+          
             {!user ? (
               <>
                 <button><Link to="/login" className="bg-blue-500 px-4 py-2 rounded">Login</Link></button>
