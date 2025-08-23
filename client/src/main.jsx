@@ -1,18 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import ContextProvider from './context/ContextProvider';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import AuthProvider from "./context/AuthProvider";
 import './index.css';
 
-const rootElement = document.getElementById('root');
-if (rootElement) {
-  ReactDOM.createRoot(rootElement).render(
-    <React.StrictMode>
-        <ContextProvider>
-            <App />
-        </ContextProvider>
-    </React.StrictMode>,
-  );
-} else {
-  throw new Error("Root element not found");
-}
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <AuthProvider>
+      <App />
+    </AuthProvider>
+  </React.StrictMode>
+);

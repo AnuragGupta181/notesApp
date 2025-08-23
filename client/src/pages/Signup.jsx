@@ -14,7 +14,7 @@ const Signup = () => {
         e.preventDefault();
         setLoading(true);
         toast.promise(
-            axios.post("http://localhost:3000/api/auth/register", { name, email, password }),
+            axios.post(`${import.meta.env.VITE_URL}api/auth/register`, { name, email, password }),
             {
                 loading: 'Signing up...',
                 success: () => {
@@ -23,7 +23,7 @@ const Signup = () => {
                 },
                 error: (error) => {
                     console.error(error);
-                    return <b>{error.response?.data?.error || "Signup failed"}</b>;
+                    return <b>{error.response?.data?.message || "Signup failed"}</b>;
                 },
             }
         ).finally(() => setLoading(false));
@@ -31,7 +31,7 @@ const Signup = () => {
 
     return (
         <div>
-            <Toaster position="bottom-left" reverseOrder={false}/>
+            <Toaster/>
             <div className="flex justify-center items-center min-h-screen bg-gray-100 text-black">
                 <div className='border shadow p-6 w-80 bg-white'>
                     <h2 className="text-2xl font-bold mb-4 text-center">Signup</h2>
@@ -39,19 +39,22 @@ const Signup = () => {
                         <div className="mb-4">
                             <label className='block text-gray-700'>Name</label>
                             <input type="text" className='border border-gray-300 p-2 w-full' 
-                            placeholder='Enter Username' 
+                            placeholder='Enter Username'
+                            required={true} 
                             onChange={(e) => setName(e.target.value)} />
                         </div>
                         <div className="mb-4">
                             <label className='block text-gray-700'>Email</label>
                             <input type="email" className='border border-gray-300 p-2 w-full' 
                             placeholder='Enter Email' 
+                            required={true}
                             onChange={(e) => setEmail(e.target.value)} />
                         </div>
                         <div className="mb-4">
                             <label className='block text-gray-700'>Password</label>
                             <input type="password" className='border border-gray-300 p-2 w-full' 
                             placeholder='Enter Password' 
+                            required={true}
                             onChange={(e) => setPassword(e.target.value)} />
                         </div>
                         <div>

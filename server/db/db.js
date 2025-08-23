@@ -1,9 +1,17 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
 
+dotenv.config();
 
 const connectDB = async () => {
+    if (mongoose.connection.readyState >= 1) {
+        // 1 = connected, 2 = connecting
+        console.log("MongoDB already connected");
+        return;
+    }
+
     try {
-        await mongoose.connect("mongodb+srv://anu:123@mycluster.gjelc.mongodb.net/notes_app");
+        await mongoose.connect(process.env.MONGODB_URI);
         console.log("MongoDB connected");
     } catch (error) {
         console.error("MongoDB connection error:", error);
